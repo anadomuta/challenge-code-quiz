@@ -19,3 +19,10 @@ function startQuiz(event) {
 }
 
 startQuiz();
+
+function loadQuestionsScript(src) {
+  let script = document.createElement("script");
+  script.src = src;
+  script.async = false; // Remove async behaviour to prevent scripts from loading in undesired order
+}
+loadQuestionsScript("questions.js");
