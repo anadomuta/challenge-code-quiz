@@ -3,7 +3,7 @@ var timerEl = document.querySelector(".timer");
 var timeEl = document.getElementById("time");
 var questionTitleEl = document.getElementById("question-title");
 var questionChoices = document.querySelector(".choices");
-var choicesArray = [];
+// var choicesArray = [];
 var secondsLeft = 60;
 var count = 0;
 var timerInterval;
@@ -19,18 +19,30 @@ startQuizEl.addEventListener("click", function setTime() {
   }, 1000);
 });
 
+function checkAnswer(chosenAnswer, expectedAnswer) {
+  if (chosenAnswer !== expectedAnswer) {
+    if (secondsLeft <= 10) {
+      secondsLeft = 0;
+    } else {
+      secondsLeft = secondsLeft - 10;
+    }
+  }
+}
+
 function renderQuestions() {
   var questionTitleText = questions.title; //assign question title to h2
   var choicesArray = questions.choices;
 
   var listEl = document.createElement("ol");
   questionTitleEl.textContent = questionTitleText;
+
+  choicesArray.forEach((choice) => {
+    var listItemEl = document.createElement("li");
+    listItemEl.textContent = choice;
+    listEl.appendChild(listItemEl);
+  });
+
+  // questionChoices.appendChild(listEl);
 }
 
-choicesArray.forEach((choice) => {
-  var listItemEl = document.createElement("li");
-  listItemEl.textContent = choice;
-  listEl.appendChild(listItemEl);
-});
-
-renderQuestions();
+// renderQuestions();
