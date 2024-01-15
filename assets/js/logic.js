@@ -4,8 +4,9 @@ var timeEl = document.getElementById("time");
 var questionTitleEl = document.getElementById("question-title");
 var questionChoices = document.querySelector(".choices");
 var startScreen = document.getElementById("start-screen");
-var questionsContainer = document.querySelector("questions");
+var questionsContainer = document.querySelector("#questions");
 // var choicesArray = [];
+var questionIndex = 0;
 var secondsLeft = 60;
 var count = 0;
 var timerInterval;
@@ -35,6 +36,7 @@ function checkAnswer(chosenAnswer, expectedAnswer) {
 function renderQuestions() {
   startScreen.classList.add("hide"); // hide the start screen from displaying when displaying questions
   questionsContainer.classList.remove("hide");
+  var question = questions[questionIndex]; // access the first question in the object to access the title of the question
 
   var questionTitleText = question.title;
   var choicesArray = question.choices;
@@ -48,7 +50,7 @@ function renderQuestions() {
     listEl.appendChild(listItemEl);
   });
 
-  // questionChoices.appendChild(listEl);
+  questionChoices.appendChild(listEl);
 }
 
 // renderQuestions();
