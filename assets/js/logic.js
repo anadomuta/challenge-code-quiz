@@ -5,14 +5,12 @@ var questionTitleEl = document.getElementById("question-title");
 var questionChoices = document.querySelector(".choices");
 var startScreen = document.getElementById("start-screen");
 var questionsContainer = document.querySelector("#questions");
-// var choicesArray = [];
-var questionIndex = 0;
 var secondsLeft = 60;
+var questionIndex = 0;
 var count = 0;
-var timerInterval;
 
 startQuizEl.addEventListener("click", function setTime() {
-  timerInterval = setInterval(function () {
+  var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds left.";
 
@@ -24,7 +22,7 @@ startQuizEl.addEventListener("click", function setTime() {
 });
 
 function checkAnswer(chosenAnswer, expectedAnswer) {
-  if (chosenAnswer !== expectedAnswer) {
+  if (chosenAnswer === expectedAnswer) {
     if (secondsLeft <= 10) {
       secondsLeft = 0;
     } else {
@@ -48,6 +46,10 @@ function renderQuestions() {
     var listItemEl = document.createElement("li");
     listItemEl.textContent = choice;
     listEl.appendChild(listItemEl);
+    // Function to check whether the answer chosen is correct
+    listItemEl.addEventListener("click", function (event) {
+      checkAnswer(this.textContent, question.answer);
+    });
   });
 
   questionChoices.appendChild(listEl);
