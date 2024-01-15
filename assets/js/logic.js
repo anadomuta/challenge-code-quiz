@@ -3,6 +3,8 @@ var timerEl = document.querySelector(".timer");
 var timeEl = document.getElementById("time");
 var questionTitleEl = document.getElementById("question-title");
 var questionChoices = document.querySelector(".choices");
+var startScreen = document.getElementById("start-screen");
+var questionsContainer = document.querySelector("questions");
 // var choicesArray = [];
 var secondsLeft = 60;
 var count = 0;
@@ -17,6 +19,7 @@ startQuizEl.addEventListener("click", function setTime() {
       clearInterval(timerInterval);
     }
   }, 1000);
+  renderQuestions();
 });
 
 function checkAnswer(chosenAnswer, expectedAnswer) {
@@ -30,8 +33,11 @@ function checkAnswer(chosenAnswer, expectedAnswer) {
 }
 
 function renderQuestions() {
-  var questionTitleText = questions.title; //assign question title to h2
-  var choicesArray = questions.choices;
+  startScreen.classList.add("hide"); // hide the start screen from displaying when displaying questions
+  questionsContainer.classList.remove("hide");
+
+  var questionTitleText = question.title;
+  var choicesArray = question.choices;
 
   var listEl = document.createElement("ol");
   questionTitleEl.textContent = questionTitleText;
