@@ -15,6 +15,7 @@ var questionIndex = 0;
 var count = 0;
 var highscoreFromLS = initLS();
 
+// Start Quiz
 startQuizEl.addEventListener("click", function setTime() {
   timerInterval = setInterval(function () {
     secondsLeft--;
@@ -27,48 +28,7 @@ startQuizEl.addEventListener("click", function setTime() {
   renderQuestions();
 });
 
-function checkAnswer(chosenAnswer, expectedAnswer) {
-  if (chosenAnswer === expectedAnswer) {
-    if (secondsLeft <= 10) {
-      secondsLeft = 0;
-    } else {
-      secondsLeft = secondsLeft - 10;
-    }
-  }
-  // Logic for moving to next question
-  questionIndex = questionIndex + 1;
-  questionChoices.innerHTML = "";
-  renderQuestions();
-}
-
-function endQuiz() {
-  questionsContainer.classList.add("hide");
-  endScreen.classList.remove("hide");
-  clearInterval(timerInterval);
-  displayScore.textContent = secondsLeft;
-}
-
-function initLS() {
-  var highscoreFromLS = localStorage.getItem("highscores");
-  if (highscoreFromLS === null || highscoreFromLS === undefined) {
-    highscoreFromLS = []; // if null, declare as empty
-    localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
-  } else {
-    highscoreFromLS = JSON.parse(highscoreFromLS);
-  }
-  return highscoreFromLS;
-}
-
-function saveScore() {
-  var name = initialsInput.value;
-  var highscoreFromLS = initLS();
-
-  highscoreFromLS.push({ name: name, score: secondsLeft });
-  localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
-}
-
-submitBtn.addEventListener("click", saveScore);
-
+// Display Questions and Answer Choices
 function renderQuestions() {
   if (questionIndex >= questions.length) {
     endQuiz();
@@ -96,3 +56,48 @@ function renderQuestions() {
 
   questionChoices.appendChild(listEl);
 }
+
+// Check Answer
+function checkAnswer(chosenAnswer, expectedAnswer) {
+  if (chosenAnswer === expectedAnswer) {
+    if (secondsLeft <= 10) {
+      secondsLeft = 0;
+    } else {
+      secondsLeft -= 10;
+    }
+  }
+  // Logic for moving to next question
+  questionIndex++;
+  questionChoices.innerHTML = "";
+  renderQuestions();
+}
+
+// End Quiz
+function endQuiz() {
+  questionsContainer.classList.add("hide");
+  endScreen.classList.remove("hide");
+  clearInterval(timerInterval);
+  displayScore.textContent = secondsLeft;
+}
+
+// Store Scores in Local Storage
+function initLS() {
+  var highscoreFromLS = localStorage.getItem("highscores");
+  if (highscoreFromLS === null || highscoreFromLS === undefined) {
+    highscoreFromLS = []; // if null, declare as empty
+    localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
+  } else {
+    highscoreFromLS = JSON.parse(highscoreFromLS);
+  }
+  return highscoreFromLS;
+}
+
+function saveScore() {
+  var name = initialsInput.value;
+  var highscoreFromLS = initLS();
+
+  highscoreFromLS.push({ name: name, score: secondsLeft });
+  localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
+}
+
+submitBtn.addEventListener("click", saveScore);
