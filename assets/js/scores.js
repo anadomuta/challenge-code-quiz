@@ -6,22 +6,32 @@ ol.appendChild(liScore);
 
 function clearScores(event) {
   clearScoreEl.addEventListener("click", function () {
-    ol.removeChild(liScore);
+    localStorage.removeItem("highscores");
+    renderScores();
+    // ol.innerHTML = "";
   });
 }
 
 clearScores();
 
 function renderScores() {
-  ol.innerHTML = "";
+  ol.innerHTML = ""; // Clear existing content
 
   var highscoreFromLS = JSON.parse(localStorage.getItem("highscores")) || [];
 
-  highscoreFromLS.forEach(function (highscore) {
-    var listScoreEl = document.createElement("li");
-    liScore.textContent = `${highscore.name}: ${highscore.score} seconds`;
-    ol.appendChild(liScore);
-  });
+  if (highscoreFromLS.length === 0) {
+    // No scores to display
+    var noScoreEl = document.createElement("p");
+    noScoreEl.textContent = "No high scores available.";
+    ol.appendChild(noScoreEl);
+  } else {
+    // Display scores
+    highscoreFromLS.forEach(function (highscore) {
+      var listScoreEl = document.createElement("li");
+      listScoreEl.textContent = `${highscore.name}: ${highscore.score} seconds`;
+      ol.appendChild(listScoreEl);
+    });
+  }
 }
 
 renderScores();

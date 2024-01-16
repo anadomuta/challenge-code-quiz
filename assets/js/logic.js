@@ -15,12 +15,11 @@ var count = 0;
 var highscoreFromLS = initLS();
 
 startQuizEl.addEventListener("click", function setTime() {
-  var timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds left.";
 
     if (secondsLeft === 0) {
-      clearInterval(timerInterval);
       endQuiz();
     }
   }, 1000);
@@ -44,7 +43,7 @@ function checkAnswer(chosenAnswer, expectedAnswer) {
 function endQuiz() {
   questionsContainer.classList.add("hide");
   endScreen.classList.remove("hide");
-  saveScore();
+  clearInterval(timerInterval);
 }
 
 function initLS() {
@@ -61,7 +60,6 @@ function initLS() {
 function saveScore() {
   var name = initialsInput.value;
   var highscoreFromLS = initLS();
-  // JSON.parse(localStorage.getItem("highscores"));
 
   highscoreFromLS.push({ name: name, score: secondsLeft });
   localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
