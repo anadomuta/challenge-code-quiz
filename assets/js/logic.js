@@ -7,9 +7,12 @@ var startScreen = document.getElementById("start-screen");
 var endScreen = document.getElementById("end-screen");
 var questionsContainer = document.querySelector("#questions");
 var initialsInput = document.getElementById("initials");
+var submitBtn = document.getElementById("submit");
+var timerInterval;
 var secondsLeft = 60;
 var questionIndex = 0;
 var count = 0;
+var highscoreFromLS = initLS();
 
 startQuizEl.addEventListener("click", function setTime() {
   var timerInterval = setInterval(function () {
@@ -44,20 +47,27 @@ function endQuiz() {
   saveScore();
 }
 
-(function initLS() {
+function initLS() {
   var highscoreFromLS = localStorage.getItem("highscores");
-  if (!highscoreFromLS) {
-    localStorage.setItem("highscores", JSON.stringify([]));
+  if (highscoreFromLS === null || highscoreFromLS === undefined) {
+    highscoreFromLS = []; // if null, declare as empty
+    localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
+  } else {
+    highscoreFromLS = JSON.parse(highscoreFromLS);
   }
-})();
+  return highscoreFromLS;
+}
 
 function saveScore() {
   var name = initialsInput.value;
-  var highscoreFromLS = JSON.parse(localStorage.getItem("highscores"));
+  var highscoreFromLS = initLS();
+  // JSON.parse(localStorage.getItem("highscores"));
 
   highscoreFromLS.push({ name: name, score: secondsLeft });
   localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
 }
+
+submitBtn.addEventListener("click", saveScore);
 
 function renderQuestions() {
   if (questionIndex >= questions.length) {
@@ -86,5 +96,3 @@ function renderQuestions() {
 
   questionChoices.appendChild(listEl);
 }
-
-// renderQuestions();

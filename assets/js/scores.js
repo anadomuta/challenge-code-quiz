@@ -15,10 +15,10 @@ clearScores();
 function renderScores() {
   ol.innerHTML = "";
 
-  var highscoreFromLS = JSON.parse(localStorage.getItem("highscores"));
+  var highscoreFromLS = JSON.parse(localStorage.getItem("highscores")) || [];
 
   highscoreFromLS.forEach(function (highscore) {
-    var liScore = document.createElement("li");
+    var listScoreEl = document.createElement("li");
     liScore.textContent = `${highscore.name}: ${highscore.score} seconds`;
     ol.appendChild(liScore);
   });
