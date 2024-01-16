@@ -4,6 +4,7 @@ var timeEl = document.getElementById("time");
 var questionTitleEl = document.getElementById("question-title");
 var questionChoices = document.querySelector(".choices");
 var startScreen = document.getElementById("start-screen");
+var endScreen = document.getElementById("end-screen");
 var questionsContainer = document.querySelector("#questions");
 var secondsLeft = 60;
 var questionIndex = 0;
@@ -29,9 +30,22 @@ function checkAnswer(chosenAnswer, expectedAnswer) {
       secondsLeft = secondsLeft - 10;
     }
   }
+  // Logic for moving to next question
+  questionIndex = questionIndex + 1;
+  questionChoices.innerHTML = "";
+  renderQuestions();
+}
+
+function endQuiz() {
+  questionsContainer.classList.add("hide");
+  endScreen.classList.remove("hide");
 }
 
 function renderQuestions() {
+  if (questionIndex >= questions.length) {
+    endQuiz();
+    return;
+  }
   startScreen.classList.add("hide"); // hide the start screen from displaying when displaying questions
   questionsContainer.classList.remove("hide");
   var question = questions[questionIndex]; // access the first question in the object to access the title of the question
