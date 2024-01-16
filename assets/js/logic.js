@@ -17,6 +17,7 @@ startQuizEl.addEventListener("click", function setTime() {
 
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
+      endQuiz();
     }
   }, 1000);
   renderQuestions();
@@ -39,6 +40,21 @@ function checkAnswer(chosenAnswer, expectedAnswer) {
 function endQuiz() {
   questionsContainer.classList.add("hide");
   endScreen.classList.remove("hide");
+}
+
+(function initLS() {
+  var highscoreFromLS = localStorage.getItem("highscores");
+  if (!highscoreFromLS) {
+    localStorage.setItem("highscores", JSON.stringify([]));
+  }
+})();
+
+function saveScore() {
+  var name = initialsInput.value;
+  var highscoreFromLS = JSON.parse(localStorage.getItem("highscores"));
+
+  highscoreFromLS.push({ name: name, score: secondsLeft });
+  localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
 }
 
 function renderQuestions() {
