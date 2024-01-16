@@ -8,6 +8,7 @@ var endScreen = document.getElementById("end-screen");
 var questionsContainer = document.querySelector("#questions");
 var initialsInput = document.getElementById("initials");
 var submitBtn = document.getElementById("submit");
+var displayScore = document.getElementById("final-score");
 var timerInterval;
 var secondsLeft = 60;
 var questionIndex = 0;
@@ -44,6 +45,7 @@ function endQuiz() {
   questionsContainer.classList.add("hide");
   endScreen.classList.remove("hide");
   clearInterval(timerInterval);
+  displayScore.textContent = secondsLeft;
 }
 
 function initLS() {
