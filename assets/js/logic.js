@@ -6,6 +6,7 @@ var questionChoices = document.querySelector(".choices");
 var startScreen = document.getElementById("start-screen");
 var endScreen = document.getElementById("end-screen");
 var questionsContainer = document.querySelector("#questions");
+var initialsInput = document.getElementById("initials");
 var secondsLeft = 60;
 var questionIndex = 0;
 var count = 0;
@@ -40,6 +41,7 @@ function checkAnswer(chosenAnswer, expectedAnswer) {
 function endQuiz() {
   questionsContainer.classList.add("hide");
   endScreen.classList.remove("hide");
+  saveScore();
 }
 
 (function initLS() {
