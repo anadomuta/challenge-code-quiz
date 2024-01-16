@@ -60,7 +60,7 @@ function renderQuestions() {
     var listItemEl = document.createElement("li");
     listItemEl.textContent = choice;
     listEl.appendChild(listItemEl);
-    // Function to check whether the answer chosen is correct
+    // Function to check whether the clicked answer is correct
     listItemEl.addEventListener("click", function (event) {
       checkAnswer(this.textContent, question.answer);
     });
