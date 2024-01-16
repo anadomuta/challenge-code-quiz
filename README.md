@@ -17,7 +17,7 @@ Once the user taps on "Start Quiz":
 
 ## Usage
 
-The webpage can be accessed using this URL: link to follow
+The webpage can be accessed using this URL: https://anadomuta.github.io/challenge-code-quiz/
 
 To start the quiz, the user can tap on the button "Start Quiz".
 
