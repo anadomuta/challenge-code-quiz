@@ -23,7 +23,8 @@ To start the quiz, the user can tap on the button "Start Quiz".
 
 The screenshot below displays an overview of the application.
 
-![Webpage Screenshot](./assets/images/start-screen-screenshot.PNG)
+![Start Page Screenshot](./assets/images/start-screen-screenshot.PNG)
+![Highscores Page Screenshot](/assets/images/highscores-screenshot.PNG)
 
 ## Credits
 
