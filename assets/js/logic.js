@@ -9,6 +9,8 @@ var questionsContainer = document.querySelector("#questions");
 var initialsInput = document.getElementById("initials");
 var submitBtn = document.getElementById("submit");
 var displayScore = document.getElementById("final-score");
+var feedbackEl = document.getElementById("feedback");
+var prevFeedbackEl = document.getElementById("prev-feedback");
 var timerInterval;
 var secondsLeft = 60;
 var questionIndex = 0;
@@ -57,16 +59,29 @@ function renderQuestions() {
   });
 
   questionChoices.appendChild(listEl);
+
+  // Display feedback for the previous question
+  prevFeedbackEl.textContent = feedbackEl.textContent;
+  prevFeedbackEl.style.display = feedbackEl.style.display;
+
+  // Clear feedback for the current question
+  feedbackEl.textContent = "";
+  feedbackEl.style.display = "none";
 }
 
 // Check Answer
 function checkAnswer(chosenAnswer, expectedAnswer) {
   if (chosenAnswer === expectedAnswer) {
-    if (secondsLeft <= 10) {
-      secondsLeft = 0;
-    } else {
+    feedbackEl.textContent = "Correct!";
+    feedbackEl.style.display = "block";
+    if (secondsLeft > 10) {
       secondsLeft -= 10;
+    } else {
+      secondsLeft = 0;
     }
+  } else {
+    feedbackEl.textContent = "Wrong!";
+    feedbackEl.style.display = "block";
   }
   // Logic for moving to next question
   questionIndex++;
@@ -100,6 +115,8 @@ function saveScore() {
 
   highscoreFromLS.push({ name: name, score: secondsLeft });
   localStorage.setItem("highscores", JSON.stringify(highscoreFromLS));
+
+  alert("All done! Go to Highscores to view a list of your previous scores.");
 }
 
 submitBtn.addEventListener("click", saveScore);
