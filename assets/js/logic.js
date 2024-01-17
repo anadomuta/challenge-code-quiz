@@ -74,14 +74,10 @@ function checkAnswer(chosenAnswer, expectedAnswer) {
   if (chosenAnswer === expectedAnswer) {
     feedbackEl.textContent = "Correct!";
     feedbackEl.style.display = "block";
-    if (secondsLeft > 10) {
-      secondsLeft -= 10;
-    } else {
-      secondsLeft = 0;
-    }
   } else {
     feedbackEl.textContent = "Wrong!";
     feedbackEl.style.display = "block";
+    secondsLeft = Math.max(0, secondsLeft - 10);
   }
   // Logic for moving to next question
   questionIndex++;
