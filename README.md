@@ -4,16 +4,16 @@ A timed quiz on JavaScript fundamentals that stores high scores.
 
 ## Description
 
-The project represents an timed quiz game application that includes four question on JavaScript fundamentals with four multiple choice answers.
+The project represents a timed quiz game application featuring four questions on JavaScript fundamentals, each with four multiple-choice options.
 
 Once the user taps on "Start Quiz":
 
-- A timer of 60 seconds starts counting
-- The user is presented with the first question
-- Once a question is answered, the users receives feedback on whether the answer is right or wrong
-- If a question is answered incorrectly, time is subtracted from the clock
-- The game ends when the timer reaches 0
-- Once the game is over, the user can save his/her initials and score, review a list of previous scores, or clear all scores
+- A timer of 60 seconds initiates.
+- The user is presented with the first question.
+- After answering, the user receives feedback on correctness, accompanied by a distinctive sound.
+- Incorrect answers result in a deduction of 10 seconds from the timer.
+- The game concludes when the timer reaches 0 or when all questions are answered.
+- Upon completion, the user can save initials and score, review previous scores, or clear all scores.
 
 ## Usage
 
@@ -21,7 +21,7 @@ The webpage can be accessed using this URL: https://anadomuta.github.io/challeng
 
 To start the quiz, the user can tap on the button "Start Quiz".
 
-The screenshot below displays an overview of the application.
+The screenshots below display an overview of the application.
 
 ![Start Page Screenshot](./assets/images/start-screen-screenshot.PNG)
 ![Highscores Page Screenshot](/assets/images/highscores-screenshot.PNG)
@@ -32,11 +32,11 @@ The project was built following the instructions from the materials in the Skill
 
 In addition, the following resources were used:
 
-1. Content of bootcamp: exercises on timers and event listeners
-2. Tutoring session to hide a section and display another section, logic to get the clicked answer and store score in local storage
-3. Spport from Teaching Assistant to fix bug on timer not stoping when end quiz reached
+1. Bootcamp content: exercises on timers and event listeners
+2. Tutoring session: hiding/displaying sections, logic to get the clicked answer, and storing of score in local storage
+3. Teaching Assistant support: bug fix for timer not stoping at quiz end
 4. [W3 Schools Code Snippet on audio](https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_audio_play)
-5. StackOverflow forum on using newAudio ():[Javascript Audio Play on click](https://stackoverflow.com/questions/18826147/javascript-audio-play-on-click)
+5. StackOverflow forum:[Javascript Audio Play on click](https://stackoverflow.com/questions/18826147/javascript-audio-play-on-click)
 6. YouTube Tutorial: [JavaScript DOM Manipulation – Full Course for Beginners](https://www.youtube.com/watch?v=5fb2aPlgoys)
 7. Blog article: [How to structure your JavaScript code into different files?](https://medium.com/@somaia_khalil/how-to-structure-your-javascript-code-into-different-files-21034102c7f3)
 8. Markdown badges from [ileriayo](https://github.com/Ileriayo/markdown-badges?tab=readme-ov-file#markdown-badges)
