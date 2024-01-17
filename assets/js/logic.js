@@ -15,6 +15,8 @@ var secondsLeft = 60;
 var questionIndex = 0;
 var count = 0;
 var highscoreFromLS = initLS();
+var audioCorrectEl = new Audio("./assets/sfx/correct.wav");
+var audioIncorrectEl = new Audio("./assets/sfx/incorrect.wav");
 
 // Start Quiz
 startQuizEl.addEventListener("click", function setTime() {
@@ -70,15 +72,23 @@ function renderQuestions() {
   feedbackEl.style.display = "none";
 }
 
+function playAudio(audioEl) {
+  if (audioEl) {
+    audioEl.play();
+  }
+}
+
 // Check selected answer
 function checkAnswer(chosenAnswer, expectedAnswer) {
   if (chosenAnswer === expectedAnswer) {
     feedbackEl.textContent = "Correct!";
     feedbackEl.style.display = "block";
+    playAudio(audioCorrectEl);
   } else {
     feedbackEl.textContent = "Wrong!";
     feedbackEl.style.display = "block";
     secondsLeft = Math.max(0, secondsLeft - 10);
+    playAudio(audioIncorrectEl);
   }
   // Move to next question
   questionIndex++;

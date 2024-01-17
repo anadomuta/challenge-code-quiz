@@ -34,9 +34,12 @@ In addition, the following resources were used:
 
 1. Content of bootcamp: exercises on timers and event listeners
 2. Tutoring session to hide a section and display another section, logic to get the clicked answer and store score in local storage
-3. YouTube Tutorial: [JavaScript DOM Manipulation – Full Course for Beginners](https://www.youtube.com/watch?v=5fb2aPlgoys)
-4. Blog article: [How to structure your JavaScript code into different files?](https://medium.com/@somaia_khalil/how-to-structure-your-javascript-code-into-different-files-21034102c7f3)
-5. Markdown badges from [ileriayo](https://github.com/Ileriayo/markdown-badges?tab=readme-ov-file#markdown-badges)
+3. Spport from Teaching Assistant to fix bug on timer not stoping when end quiz reached
+4. [W3 Schools Code Snippet on audio](https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_audio_play)
+5. StackOverflow forum on using newAudio ():[Javascript Audio Play on click](https://stackoverflow.com/questions/18826147/javascript-audio-play-on-click)
+6. YouTube Tutorial: [JavaScript DOM Manipulation – Full Course for Beginners](https://www.youtube.com/watch?v=5fb2aPlgoys)
+7. Blog article: [How to structure your JavaScript code into different files?](https://medium.com/@somaia_khalil/how-to-structure-your-javascript-code-into-different-files-21034102c7f3)
+8. Markdown badges from [ileriayo](https://github.com/Ileriayo/markdown-badges?tab=readme-ov-file#markdown-badges)
 
 ## License
 
