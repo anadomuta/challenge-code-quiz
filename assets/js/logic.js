@@ -10,7 +10,6 @@ var initialsInput = document.getElementById("initials");
 var submitBtn = document.getElementById("submit");
 var displayScore = document.getElementById("final-score");
 var feedbackEl = document.getElementById("feedback");
-var prevFeedbackEl = document.getElementById("prev-feedback");
 var timerInterval;
 var secondsLeft = 60;
 var questionIndex = 0;
@@ -36,23 +35,25 @@ function renderQuestions() {
     endQuiz();
     return;
   }
-  startScreen.classList.add("hide"); // hide the start screen from displaying when displaying questions
+  // Hide the start screen and displaying questions container
+  startScreen.classList.add("hide");
   questionsContainer.classList.remove("hide");
-  var question = questions[questionIndex]; // access the first question in the object to access the title of the question
 
+  // Access first question
+  var question = questions[questionIndex];
   var questionTitleText = question.title;
   var choicesArray = question.choices;
 
+  // Create list of choices
   var listEl = document.createElement("ol");
   questionTitleEl.textContent = questionTitleText;
 
+  // Populate choices and attach event listener
   choicesArray.forEach((choice) => {
     var listItemEl = document.createElement("li");
     listItemEl.textContent = choice;
     listItemEl.classList.add("hover-effect");
     listEl.appendChild(listItemEl);
-
-    // Function to check whether the clicked answer is correct
     listItemEl.addEventListener("click", function (event) {
       checkAnswer(this.textContent, question.answer);
     });
@@ -60,16 +61,16 @@ function renderQuestions() {
 
   questionChoices.appendChild(listEl);
 
-  // Display feedback for the previous question
+  // Display feedback for previous question
   prevFeedbackEl.textContent = feedbackEl.textContent;
   prevFeedbackEl.style.display = feedbackEl.style.display;
 
-  // Clear feedback for the current question
+  // Clear feedback for current question
   feedbackEl.textContent = "";
   feedbackEl.style.display = "none";
 }
 
-// Check Answer
+// Check selected answer
 function checkAnswer(chosenAnswer, expectedAnswer) {
   if (chosenAnswer === expectedAnswer) {
     feedbackEl.textContent = "Correct!";
@@ -79,7 +80,7 @@ function checkAnswer(chosenAnswer, expectedAnswer) {
     feedbackEl.style.display = "block";
     secondsLeft = Math.max(0, secondsLeft - 10);
   }
-  // Logic for moving to next question
+  // Move to next question
   questionIndex++;
   questionChoices.innerHTML = "";
   renderQuestions();
@@ -105,6 +106,7 @@ function initLS() {
   return highscoreFromLS;
 }
 
+// Save user's score
 function saveScore() {
   var name = initialsInput.value;
   var highscoreFromLS = initLS();

@@ -4,25 +4,26 @@ var clearScoreEl = document.getElementById("clear");
 
 ol.appendChild(liScore);
 
+// Clear scores when users taps on button
 function clearScores(event) {
   clearScoreEl.addEventListener("click", function () {
     localStorage.removeItem("highscores");
     renderScores();
-    // ol.innerHTML = "";
   });
 }
 
 clearScores();
 
+// Display Scores from Local Storage
 function renderScores() {
-  ol.innerHTML = ""; // Clear existing content
+  ol.innerHTML = ""; // Clear existing scores
 
   var highscoreFromLS = JSON.parse(localStorage.getItem("highscores")) || [];
 
   if (highscoreFromLS.length === 0) {
     // No scores to display
     var noScoreEl = document.createElement("p");
-    noScoreEl.textContent = "No high scores available.";
+    noScoreEl.textContent = "Scores cleared!";
     ol.appendChild(noScoreEl);
   } else {
     // Display scores
