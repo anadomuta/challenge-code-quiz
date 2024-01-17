@@ -18,10 +18,10 @@ var highscoreFromLS = initLS();
 // Start Quiz
 startQuizEl.addEventListener("click", function setTime() {
   timerInterval = setInterval(function () {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left.";
-
-    if (secondsLeft === 0) {
+    if (secondsLeft > 0) {
+      secondsLeft--;
+      timeEl.textContent = secondsLeft + " seconds left.";
+    } else if (secondsLeft === 0) {
       endQuiz();
     }
   }, 1000);
@@ -47,7 +47,9 @@ function renderQuestions() {
   choicesArray.forEach((choice) => {
     var listItemEl = document.createElement("li");
     listItemEl.textContent = choice;
+    listItemEl.classList.add("hover-effect");
     listEl.appendChild(listItemEl);
+
     // Function to check whether the clicked answer is correct
     listItemEl.addEventListener("click", function (event) {
       checkAnswer(this.textContent, question.answer);

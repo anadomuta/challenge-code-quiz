@@ -10,7 +10,7 @@ a {
 }
 
 a:hover {
-  color: #8570a5;
+  color: magenta;
 }
 
 button {
@@ -27,11 +27,17 @@ button {
 }
 
 button:hover {
-  background-color: #8570a5;
+  background-color: magenta;
 }
 
 .choices button {
   display: block;
+}
+
+.choices ol li:hover {
+  background-color: magenta;
+  /* Change this to the color you desire */
+  cursor: pointer;
 }
 
 input[type="text"] {
